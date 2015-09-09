@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <style>
+     #GearsCanvas {position:fixed;
+right:0%;
+bottom:0%;
+
+
+ </style>
+ <script>
+        var gcanvas, ctx;
+        var centerX=0, centerY=0, Angle=0.015 , dA=0;
+        var rpm=3;
+        function init() {
+            // This function is called after the page is loaded
+            // 1 - Get the canvas
+            gcanvas = document.getElementById('GearsCanvas');
+            // 2 - Get the context
+            ctx=gcanvas.getContext('2d');
+			
+          requestId = requestAnimationFrame(animationLoop)
+        }
+        function animationLoop() {
+            // 1 - Clear the canvas
+            ctx.clearRect(0, 0, gcanvas.width, gcanvas.height);
+            // 2 Draw the gear using variables for pos, angle, etc.
+           drawGears(centerX, centerY, Angle);
+           // 3 Move the gear (change pos, angle, size, etc.)
+           Angle+=rpm*0.001745329252;
+          dA-=rpm*3.5*0.001745329252;
+        }    
+   function putgear(atx,aty,sangle){
+     ctx.save()
+     ctx.translate(atx, aty)
+     ctx.rotate(sangle)
+     ctx.translate(-59,-59)
+     ctx.drawImage(document.getElementById("Gearside"),0,0)
+     ctx.restore()
+   }
+   function puticon(Id,atx,aty){
+     ctx.save()
+     ctx.translate(atx, aty)
+	 ctx.translate(-31,-31)
+	 ctx.scale(0.05,0.05)
+     ctx.drawImage(document.getElementById(Id),0,0)
+     ctx.restore()
+   }
+   function drawGears(x, y, angle) {   
+     // Remember to save
+     ctx.save(); 
+     // Moves the coordinate system so that the gear is drawn
+     // at position (x, y)
+     ctx.translate(293,295);
+     ctx.rotate(Angle)
+     ctx.translate(-184,-184)
+     ctx.drawImage(document.getElementById("Gearcentre"),0,0)
+     ctx.restore()
+     ctx.save();
+     // draw gears
+     putgear(519,295,0+dA)
+     putgear(488,408,-1.832595714594046+dA)
+     putgear(406,490,-3.665191429188092+dA)
+     putgear(293,520,-5.497787143782138+dA)
+     putgear(181,490,-7.330382858376184+dA)
+     putgear(99,408,-9.16297857297023+dA)
+     putgear(68,294, 10.995574287564276+dA)
+     putgear(99,183,  9.16297857297023+dA)
+     putgear(180,100, 7.330382858376184+dA)
+     putgear(293,69,  5.497787143782138+dA)
+     putgear(406,100, 3.665191429188092+dA)
+     putgear(488,182, 1.832595714594046+dA)
+	 // draw icons
+	 puticon("Home",180,100)
+	 puticon("Home",406,100)
+	 puticon("Home",181,490)
+	 puticon("Home",406,490)
+	 puticon("Home",68,294)
+	 puticon("Home",519,295)
+     // Remember to restore
+     ctx.restore();
+     // Request next frame
+     requestId = requestAnimationFrame(animationLoop)
+}
+</script>
+ </head>
+<aside id="aSide" >
+    <canvas id="GearsCanvas" width="601" height="607">
+        Your browser does not support the canvas tag.
+    </canvas>
+</aside>
+<body bgcolor="FFFFFF" onload="init();">
+     <img id="Gearcentre" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDRTVVOWV5LVFNOWs" alt="The centre gear" height="0px">
+     <img id="Gearside" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDbHB1bjhka3hJR3M" alt="The side gear" height="0px">
+	 <img id="Home" src="C:\Users\Laptop\Desktop\fd.jpg" alt="Home" height="0px">
+</body>
+</html>
