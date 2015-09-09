@@ -7,6 +7,10 @@ Copyright (c) 2015 by anonymous (http://jsbin.com/diqohulire/1/edit)
 
 
 Released under the MIT license: http://jsbin.mit-license.org
+
+Copyright (c) 2015 by anonymous (http://jsbin.com/qasaso/)
+
+Released under the MIT license: http://jsbin.mit-license.org
 -->
 <meta name="robots" content="noindex">
 <html>
@@ -32,8 +36,8 @@ Released under the MIT license: http://jsbin.mit-license.org
       
       
       <script>
-        var canvas, ctx,dA;
-        var centerX=0, centerY=0, Angle=0;
+        var canvas, ctx;
+        var centerX=0, centerY=0, Angle=0 , dA=0;
         function init() {
             // This function is called after the page is loaded
             // 1 - Get the canvas
@@ -60,7 +64,7 @@ Released under the MIT license: http://jsbin.mit-license.org
           
           
            Angle+= 0.01;
-          dA+=0.035
+          dA-=0.035
         }
         
         
@@ -70,7 +74,7 @@ Released under the MIT license: http://jsbin.mit-license.org
      ctx.save()
      ctx.translate(atx, aty)
      ctx.rotate(sangle)
-     
+     ctx .translate(-59,-59)
      ctx.drawImage(document.getElementById("Gearside"),0,0)
      ctx.restore()
    }
@@ -88,21 +92,21 @@ Released under the MIT license: http://jsbin.mit-license.org
    ctx.drawImage(document.getElementById("Gearcentre"),0,0)
      ctx.restore()
      ctx.save();
-     ctx .translate(-59,-59)
+     
      
      // draw
      putgear(519,295,0+dA)
-     putgear(488,408,0+dA)
-     putgear(406,490,0+dA)
-     putgear(293,520,0+dA)
-     putgear(181,490,0+dA)
-     putgear(99,408,0+dA)
-     putgear(68,294,0+dA)
-     putgear(99,183,0+dA)
-     putgear(180,100,0+dA)
-     putgear(293,69,0+dA)
-     putgear(406,100,0+dA)
-     putgear(488,182,0+dA)
+     putgear(488,408,-1.832595714594046+dA)
+     putgear(406,490,-3.665191429188092+dA)
+     putgear(293,520,-5.497787143782138+dA)
+     putgear(181,490,-7.330382858376184+dA)
+     putgear(99,408,-9.16297857297023+dA)
+     putgear(68,294, 10.995574287564276+dA)
+     putgear(99,183,  9.16297857297023+dA)
+     putgear(180,100, 7.330382858376184+dA)
+     putgear(293,69,  5.497787143782138+dA)
+     putgear(406,100, 3.665191429188092+dA)
+     putgear(488,182, 1.832595714594046+dA)
      
 
      
@@ -113,7 +117,9 @@ Released under the MIT license: http://jsbin.mit-license.org
    }
     
       
-      
+      function start(){
+        requestId = requestAnimationFrame(animationLoop)
+      }
       
       
     
