@@ -1,5 +1,8 @@
+<!---{{Template_IISER_Pune_Gear}}--!>
+<Ykj>
+<!-- Declare that you are going to use html code instead of wiki code -->
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
  <head>
  <style>
      #GearsCanvas {position:fixed;
@@ -19,8 +22,33 @@ bottom:0%;
             // 2 - Get the context
             ctx=gcanvas.getContext('2d');
 			
+			scalecanvas(40,window.innerWidth,window.innerHeight)
+			
+			
+			
           requestId = requestAnimationFrame(animationLoop)
         }
+		
+		function scalecanvas(percent,windowWidth,windowHeight) {
+		
+			if (windowWidth  < windowHeight)
+            {
+                gcanvas.width  = windowWidth * percent/100;
+				gcanvas.height = windowWidth * percent/100;
+            }
+			if (windowHeight < windowWidth)
+			{
+				gcanvas.width = windowHeight * percent/100
+				gcanvas.height = windowHeight * percent/100
+			}
+			
+		}
+		
+		
+		
+		
+		
+		
         function animationLoop() {
             // 1 - Clear the canvas
             ctx.clearRect(0, 0, gcanvas.width, gcanvas.height);
@@ -34,30 +62,27 @@ bottom:0%;
      ctx.save()
      ctx.translate(atx, aty)
      ctx.rotate(sangle)
-     ctx.translate(-59,-59)
+     ctx .translate(-59,-59)
      ctx.drawImage(document.getElementById("Gearside"),0,0)
      ctx.restore()
-   }
-   function puticon(Id,atx,aty){
-     ctx.save()
-     ctx.translate(atx, aty)
-	 ctx.translate(-31,-31)
-	 ctx.scale(0.05,0.05)
-     ctx.drawImage(document.getElementById(Id),0,0)
-     ctx.restore()
-   }
+   }      
    function drawGears(x, y, angle) {   
      // Remember to save
-     ctx.save(); 
+     ctx.save();
+	 
+	 ctx.scale(gcanvas.width/601,gcanvas.height/607)
+	 
      // Moves the coordinate system so that the gear is drawn
      // at position (x, y)
+	 ctx.save();
      ctx.translate(293,295);
      ctx.rotate(Angle)
      ctx.translate(-184,-184)
      ctx.drawImage(document.getElementById("Gearcentre"),0,0)
      ctx.restore()
-     ctx.save();
-     // draw gears
+     
+     // draw
+	 ctx.save();
      putgear(519,295,0+dA)
      putgear(488,408,-1.832595714594046+dA)
      putgear(406,490,-3.665191429188092+dA)
@@ -70,14 +95,9 @@ bottom:0%;
      putgear(293,69,  5.497787143782138+dA)
      putgear(406,100, 3.665191429188092+dA)
      putgear(488,182, 1.832595714594046+dA)
-	 // draw icons
-	 puticon("Home",180,100)
-	 puticon("Home",406,100)
-	 puticon("Home",181,490)
-	 puticon("Home",406,490)
-	 puticon("Home",68,294)
-	 puticon("Home",519,295)
-     // Remember to restore
+     ctx.restore();
+	 
+	 // Remember to restore
      ctx.restore();
      // Request next frame
      requestId = requestAnimationFrame(animationLoop)
@@ -89,10 +109,8 @@ bottom:0%;
         Your browser does not support the canvas tag.
     </canvas>
 </aside>
-<body bgcolor="FFFFFF" onload="init();">
-     <img id="Gearcentre" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDRTVVOWV5LVFNOWs" alt="The centre gear" height="0px">
-     <img id="Gearside" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDbHB1bjhka3hJR3M" alt="The side gear" height="0px">
-	 <img id="Home" src="C:\Users\Laptop\Desktop\iGEM\Wiki\Navicons\Team.svg" alt="Home" height="0px">
-	 <--img id="Home" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDNV9mM21aZUVpNmc" alt="Home" height="0px"-->
+<body onload="init();">
+	 <img id="Gearcentre" src="C:\Users\Laptop\Desktop\iGEM\Wiki\svg\Gear\gear_big_white_3.svg" alt="The centre gear" height="0px">
+     <img id="Gearside" src="C:\Users\Laptop\Desktop\iGEM\Wiki\svg\Gear\gear_small_white_3.svg" alt="The side gear" height="0px">
 </body>
 </html>
