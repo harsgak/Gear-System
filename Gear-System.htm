@@ -38,11 +38,11 @@ bottom:0%;
      ctx.drawImage(document.getElementById("Gearside"),0,0)
      ctx.restore()
    }
-   function puticon(Id,atx,aty){
+   function puticon(Id,atx,aty,sx){
      ctx.save()
      ctx.translate(atx, aty)
-	 ctx.translate(-31,-31)
-	 ctx.scale(0.05,0.05)
+	 ctx.translate(-15,-15)
+	 ctx.scale(sx,sx)
      ctx.drawImage(document.getElementById(Id),0,0)
      ctx.restore()
    }
@@ -71,12 +71,13 @@ bottom:0%;
      putgear(406,100, 3.665191429188092+dA)
      putgear(488,182, 1.832595714594046+dA)
 	 // draw icons
-	 puticon("Home",180,100)
-	 puticon("Home",406,100)
-	 puticon("Home",181,490)
-	 puticon("Home",406,490)
-	 puticon("Home",68,294)
-	 puticon("Home",519,295)
+	 puticon("Home",190,180,0.25)
+	 puticon("Team",170,90,0.085)
+	 puticon("Model",395,85,0.045)
+	 puticon("Sponsor",85,400,0.045)
+	 puticon("Attribute",55,285,0.045)
+	 puticon("HP",85,175,0.09)
+	 puticon("Project",280,60,0.09)
      // Remember to restore
      ctx.restore();
      // Request next frame
@@ -92,7 +93,12 @@ bottom:0%;
 <body bgcolor="FFFFFF" onload="init();">
      <img id="Gearcentre" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDRTVVOWV5LVFNOWs" alt="The centre gear" height="0px">
      <img id="Gearside" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDbHB1bjhka3hJR3M" alt="The side gear" height="0px">
-	 <img id="Home" src="C:\Users\Laptop\Desktop\iGEM\Wiki\Navicons\Team.svg" alt="Home" height="0px">
-	 <--img id="Home" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDNV9mM21aZUVpNmc" alt="Home" height="0px"-->
+	 <img id="Team" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDNV9mM21aZUVpNmc" alt="Team" height="0px">
+	 <img id="Home" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDbUg0Y2tJa01PbzQ" alt="Home" height="0px">
+	 <img id="Model" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDMy03WTFCakdldlU" alt="Model" height="0px">
+	 <img id="Sponsor" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDOEY3NVRIZ3ZhVXM" alt="Sponsor" height="0px">
+	 <img id="Attribute" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDMWhaNXlORGg1MHc" alt="Attribute" height="0px">
+	 <img id="HP" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDRHNnV0RZcl9USXM" alt="HP" height="0px">
+	 <img id="Project" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDSXpMLVlxSG1Canc" alt="Project" height="0px">
 </body>
 </html>
