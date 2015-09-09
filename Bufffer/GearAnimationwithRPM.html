@@ -11,7 +11,6 @@ Released under the MIT license: http://jsbin.mit-license.org
 Copyright (c) 2015 by anonymous (http://jsbin.com/qasaso/)
 
 Released under the MIT license: http://jsbin.mit-license.org
-using gearclicks 1sep15 2322
 -->
 <meta name="robots" content="noindex">
 <html>
@@ -38,80 +37,16 @@ using gearclicks 1sep15 2322
       
       <script>
         var canvas, ctx;
-        var centerX=0, centerY=0, Angle=0 , dA=0;
-        var homeradius=184 , otherradius=59
-        var circles = []
-        var Circle = function(x, y, radius) {
-    this.left = x - radius;
-    this.top = y - radius;
-    this.right = x + radius;
-    this.bottom = y + radius;
-};
-       function init() {
+        var centerX=0, centerY=0, Angle=0.015 , dA=0;
+        var rpm=2;
+        function init() {
             // This function is called after the page is loaded
             // 1 - Get the canvas
             canvas = document.getElementById('myCanvas');
             // 2 - Get the context
             ctx=canvas.getContext('2d');
-            clickRegions()
-            canvas.addEventListener('click', clickedHere );
-            
           requestId = requestAnimationFrame(animationLoop)
         }
-
-
-
-
-       function clickRegions(){
-        //inspiraion from pterkildsen
-          var circle0 = new Circle(293,295,0.7071*homeradius);
-          var circle1 = new Circle(519,295, otherradius);
-          var circle2 = new Circle(488,408,otherradius);
-          var circle3 = new Circle(406,490,otherradius);
-          var circle4 = new Circle(293,520,otherradius);
-          var circle5 = new Circle(181,490,otherradius);
-          var circle6 = new Circle(99,408,otherradius);
-          var circle7 = new Circle(68,294,otherradius);
-          var circle8 = new Circle(99,183,otherradius);
-          var circle9 = new Circle(180,100,otherradius);
-          var circle10 = new Circle(293,69,otherradius);
-          var circle11 = new Circle(406,100,otherradius);
-          var circle12 = new Circle(488,182,otherradius);
-          
-
-          
-          circles.push(circle0);
-          circles.push(circle1);
-          circles.push(circle2);
-          circles.push(circle3);
-          circles.push(circle4);
-          circles.push(circle5);
-          circles.push(circle6);
-          circles.push(circle7);
-          circles.push(circle8);
-          circles.push(circle9);
-          circles.push(circle10);
-          circles.push(circle11);
-          circles.push(circle12);
-       };
-       
-       function clickedHere (e) {
-         //Identifies Which circle clicked
-         //put a function for opening respective page in if block
-         var clickedX = e.pageX - this.offsetLeft;
-         var clickedY = e.pageY - this.offsetTop;
-    
-         for (var i = 0; i < circles.length; i++) {
-             if (clickedX < circles[i].right && clickedX > circles[i].left && clickedY > circles[i].top && clickedY < circles[i].bottom) {
-                 alert ('clicked number ' + (i ));
-             }
-         }
-       }
-       
-       
-
-       
-       
         function animationLoop() {
             // 1 - Clear the canvas
   
@@ -129,21 +64,18 @@ using gearclicks 1sep15 2322
           
           
           
-           Angle+= 0.01;
-          dA-=0.035
-          
-          requestId = requestAnimationFrame(animationLoop)
+           Angle+=rpm*0.001745329252;
+          dA-=rpm*3.5*0.001745329252;
         }
         
         
         
         
- 
    function putgear(atx,aty,sangle){
      ctx.save()
      ctx.translate(atx, aty)
      ctx.rotate(sangle)
-     ctx .translate(- otherradius,- otherradius)
+     ctx .translate(-59,-59)
      ctx.drawImage(document.getElementById("Gearside"),0,0)
      ctx.restore()
    }
@@ -169,7 +101,7 @@ using gearclicks 1sep15 2322
      putgear(406,490,-3.665191429188092+dA)
      putgear(293,520,-5.497787143782138+dA)
      putgear(181,490,-7.330382858376184+dA)
-     putgear(99,408, -9.16297857297023+dA)
+     putgear(99,408,-9.16297857297023+dA)
      putgear(68,294, 10.995574287564276+dA)
      putgear(99,183,  9.16297857297023+dA)
      putgear(180,100, 7.330382858376184+dA)
@@ -182,7 +114,7 @@ using gearclicks 1sep15 2322
      
      // GOOD PRACTICE !
      ctx.restore();
-      
+      requestId = requestAnimationFrame(animationLoop)
    }
     
       
