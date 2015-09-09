@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2015 by anonymous (http://jsbin.com/diqohulire/1/edit)
+
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+ <head>
+ <style>
+     #myCanvas {
+         border: 1px solid black;
+     }
+ </style>
+
+ </head>
+<body onload="init();">
+     <p>Image to use:</p>
+     <img id="Gearcentre" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUdEVkdThOSVRKeUU" alt="The centre gear">
+     <img id="Gearside" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUWXdpSm8xZzROUFE" alt="The centre gear">
+    <canvas id="myCanvas" width="601" height="607">
+        Your browser does not support the canvas tag.
+    </canvas>
+    <p>
+    <button onclick="start()">Start animation</button>
+    <button onclick="stop()">Stop animation</button>
+    
+      
+      
+      <script>
+        var canvas, ctx,dA;
+        var centerX=0, centerY=0, Angle=0;
+        function init() {
+            // This function is called after the page is loaded
+            // 1 - Get the canvas
+            canvas = document.getElementById('myCanvas');
+            // 2 - Get the context
+            ctx=canvas.getContext('2d');
+          requestId = requestAnimationFrame(animationLoop)
+        }
+        function animationLoop() {
+            // 1 - Clear the canvas
+  
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+          
+            // 2 Draw the monster using variables for pos, angle, etc.
+ 
+           drawGears(centerX, centerY, Angle, 'green', 'yellow');
+          
+          
+          
+           // 3 Move the monster (change pos, angle, size, etc.)
+          
+          
+          
+          
+          
+           Angle+= 0.01;
+          dA+=0.035
+        }
+        
+        
+        
+        
+   function putgear(atx,aty,sangle){
+     ctx.save()
+     ctx.translate(atx, aty)
+     ctx.rotate(sangle)
+     
+     ctx.drawImage(document.getElementById("Gearside"),0,0)
+     ctx.restore()
+   }
+        
+        
+   function drawGears(x, y, angle, headColor, eyeColor) {   
+     // GOOD PRACTICE : SAVE CONTEXT AND RESTORE IT AT THE END
+     ctx.save();
+     
+     // Moves the coordinate system so that the monster is drawn
+     // at position (x, y)
+     ctx.translate(293,295);
+     ctx.rotate(Angle)
+     ctx.translate(-184,-184)
+   ctx.drawImage(document.getElementById("Gearcentre"),0,0)
+     ctx.restore()
+     ctx.save();
+     ctx .translate(-59,-59)
+     
+     // draw
+     putgear(519,295,0+dA)
+     putgear(488,408,0+dA)
+     putgear(406,490,0+dA)
+     putgear(293,520,0+dA)
+     putgear(181,490,0+dA)
+     putgear(99,408,0+dA)
+     putgear(68,294,0+dA)
+     putgear(99,183,0+dA)
+     putgear(180,100,0+dA)
+     putgear(293,69,0+dA)
+     putgear(406,100,0+dA)
+     putgear(488,182,0+dA)
+     
+
+     
+     
+     // GOOD PRACTICE !
+     ctx.restore();
+      requestId = requestAnimationFrame(animationLoop)
+   }
+    
+      
+      
+      
+      
+    
+     function stop() {
+         if (requestId) {
+             cancelAnimationFrame(requestId);
+         }
+     }
+</script>
+</body>
+</html>
