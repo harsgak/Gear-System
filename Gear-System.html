@@ -1,45 +1,21 @@
 <!DOCTYPE html>
-<!--
-Created using JS Bin
-http://jsbin.com
-
-Copyright (c) 2015 by anonymous (http://jsbin.com/diqohulire/1/edit)
-
-
-Released under the MIT license: http://jsbin.mit-license.org
-
-Copyright (c) 2015 by anonymous (http://jsbin.com/qasaso/)
-
-Released under the MIT license: http://jsbin.mit-license.org
-
-1sep15 2322
--->
-<meta name="robots" content="noindex">
+ 
+ 
 <html>
  <head>
  <style>
-     #myCanvas {
-         border: 1px solid black;
+     #gearsCanvas {
+           position:fixed;
+           right:0%; 
+           bottom:0%;
      }
- </style>
 
- </head>
-<body onload="init();">
-     <p>Image to use:</p>
-     <img id="Gearcentre" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUdEVkdThOSVRKeUU" alt="The centre gear">
-     <img id="Gearside" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUWXdpSm8xZzROUFE" alt="The centre gear">
-    <canvas id="myCanvas" width="601" height="607">
-        Your browser does not support the canvas tag.
-    </canvas>
-    <p>
-    <button onclick="start()">Start animation</button>
-    <button onclick="stop()">Stop animation</button>
-    
-      
-      
-      <script>
+
+ </style>
+ <script>
         var canvas, ctx;
-        var centerX=0, centerY=0, Angle=0 , dA=0;
+        var centerX=0, centerY=0, Angle=0.015 , dA=0;
+        var rpm=3
         var homeradius=184 , otherradius=59
         var circles = []
         var navlinks=[]
@@ -52,7 +28,7 @@ Released under the MIT license: http://jsbin.mit-license.org
        function init() {
             // This function is called after the page is loaded
             // 1 - Get the canvas
-            canvas = document.getElementById('myCanvas');
+            canvas = document.getElementById('gearsCanvas');
             // 2 - Get the context
             ctx=canvas.getContext('2d');
             clickRegions()
@@ -142,7 +118,7 @@ Released under the MIT license: http://jsbin.mit-license.org
           
             // 2 Draw the monster using variables for pos, angle, etc.
  
-           drawGears(centerX, centerY, Angle, 'green', 'yellow');
+           drawGears(centerX, centerY, Angle);
           
           
           
@@ -152,8 +128,8 @@ Released under the MIT license: http://jsbin.mit-license.org
           
           
           
-           Angle+= 0.01;
-          dA-=0.035
+          Angle+=rpm * 0.001745329252;
+             dA-=rpm * 3.5 * 0.001745329252;
           
           requestId = requestAnimationFrame(animationLoop)
         }
@@ -176,12 +152,12 @@ Released under the MIT license: http://jsbin.mit-license.org
      // GOOD PRACTICE : SAVE CONTEXT AND RESTORE IT AT THE END
      ctx.save();
      
-     // Moves the coordinate system so that the monster is drawn
-     // at position (x, y)
+     // Moves or scales coordinate system to draw gears at new angles , sizes
+
      ctx.translate(293,295);
      ctx.rotate(Angle)
      ctx.translate(-184,-184)
-   ctx.drawImage(document.getElementById("Gearcentre"),0,0)
+     ctx.drawImage(document.getElementById("Gearcentre"),0,0)
      ctx.restore()
      ctx.save();
      
@@ -203,7 +179,7 @@ Released under the MIT license: http://jsbin.mit-license.org
 
      
      
-     // GOOD PRACTICE !
+     // GOOD PRACTICE : Restore context at end
      ctx.restore();
       
    }
@@ -224,6 +200,24 @@ Released under the MIT license: http://jsbin.mit-license.org
          }
      }
 
-</script>
+ </script>
+ 
+
+ </head>
+<body onload="init();">
+     
+ 
+     <img id="Gearcentre" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUdEVkdThOSVRKeUU" alt="The centre gear[loading..]" height="0px">
+     <img id="Gearside" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUWXdpSm8xZzROUFE" alt="The side gear[loading..]" height="0px">
+     
+     <div id="NavGear">
+     <canvas id="gearsCanvas" width="601" height="607">
+        Your browser does not support the canvas tag.
+     </canvas>
+     </div>
+    
+      
+      
+      
 </body>
 </html>
