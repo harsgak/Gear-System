@@ -210,7 +210,9 @@ Released under the MIT license: http://jsbin.mit-license.org
     
       
       function start(){
+       if (requestId===0) {
         requestId = requestAnimationFrame(animationLoop)
+       }
       }
       
       
@@ -218,6 +220,7 @@ Released under the MIT license: http://jsbin.mit-license.org
      function stop() {
          if (requestId) {
              cancelAnimationFrame(requestId);
+             requestId = 0;
          }
      }
 
