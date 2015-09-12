@@ -3,7 +3,7 @@
  
 <html>
  <head>
- <style>
+   <style>
      #gearsCanvas {
            position:fixed;
            right:0%; 
@@ -11,19 +11,20 @@
      }
 
 
- </style>
- <script>
+   </style>
+   <script>
         var canvas, ctx;
         var centerX=0, centerY=0, Angle=0.015 , dA=0;
         var rpm=3
         var homeradius=184 , otherradius=59
+		var scaleX=1 ,scaleY=1;
         var circles = []
         var navlinks=[]
         var Circle = function(x, y, radius) {
-    this.left = x - radius;
-    this.top = y - radius;
-    this.right = x + radius;
-    this.bottom = y + radius;
+    this.left =  (x - radius)*scaleX;
+    this.top =   (y - radius)*scaleX;
+    this.right = (x + radius)*scaleX;
+    this.bottom =(y + radius)*scaleX;
 };
        function init() {
             // This function is called after the page is loaded
@@ -31,6 +32,13 @@
             canvas = document.getElementById('gearsCanvas');
             // 2 - Get the context
             ctx=canvas.getContext('2d');
+			
+			// 3 - Scale drawing to canvas size
+			scaleX=canvas.width/601
+			scaleY=canvas.height/607
+			ctx.scale(scaleX,scaleY)
+			
+			// 4 - Setup button areas
             clickRegions()
             canvas.addEventListener('click', clickedHere );
             canvas.addEventListener("mouseover", stop);
@@ -99,6 +107,7 @@
          for (var i = 0; i < circles.length; i++) {
              if (clickedX < circles[i].right && clickedX > circles[i].left && clickedY > circles[i].top && clickedY < circles[i].bottom) {
                  openpage(i);
+				 highlightgear(i);
              }
          }
        }
@@ -108,21 +117,27 @@
        
        
        function openpage(i){
-          window.location.href= navlinks[i]
-       
-       }
-        function animationLoop() {
+		window.location.href= navlinks[i];
+		}
+	   
+	   
+       function highlightgear(i){
+	   }
+		function animationLoop() {
             // 1 - Clear the canvas
   
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width/scaleX, canvas.height/scaleY);
           
-            // 2 Draw the monster using variables for pos, angle, etc.
+            // 2 Draw the gear canvas using variables for pos, angle, etc.
  
            drawGears(centerX, centerY, Angle);
+		   
+		   
+		   ctx.drawImage(document.getElementById("Icons"),0,0,canvas.width/scaleX,canvas.height/scaleY)   //Icons on top
           
           
           
-           // 3 Move the monster (change pos, angle, size, etc.)
+           // 3 Move the gears  (change pos, angle, size, etc.   -- with math)
           
           
           
@@ -162,7 +177,7 @@
      ctx.save();
      
      
-     // draw
+     // draw side gears
      putgear(519,295,0+dA)
      putgear(488,408,-1.832595714594046+dA)
      putgear(406,490,-3.665191429188092+dA)
@@ -200,20 +215,20 @@
          }
      }
 
- </script>
+   </script>
  
 
  </head>
 <body onload="init();">
-     
  
-     <img id="Gearcentre" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUdEVkdThOSVRKeUU" alt="The centre gear[loading..]" height="0px">
-     <img id="Gearside" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUWXdpSm8xZzROUFE" alt="The side gear[loading..]" height="0px">
-     
-     <div id="NavGear">
-     <canvas id="gearsCanvas" width="601" height="607">
+ 
+ 	 <div id="NavGear" >
+	    <img id="Gearcentre" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDRTVVOWV5LVFNOWs" alt="The centre gear[loading..]" height="0px">
+        <img id="Gearside" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDbHB1bjhka3hJR3M" alt="The side gear[loading..]" height="0px">
+        <img id="Icons" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUQk5PZ01qM29zeXc" alt="Navicons[loading..]" height="0px">
+       <canvas id="gearsCanvas" width="300" height="300">
         Your browser does not support the canvas tag.
-     </canvas>
+       </canvas>
      </div>
     
       
