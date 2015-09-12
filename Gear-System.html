@@ -99,6 +99,7 @@
          for (var i = 0; i < circles.length; i++) {
              if (clickedX < circles[i].right && clickedX > circles[i].left && clickedY > circles[i].top && clickedY < circles[i].bottom) {
                  openpage(i);
+				 highlightgear(i);
              }
          }
        }
@@ -108,10 +109,13 @@
        
        
        function openpage(i){
-          window.location.href= navlinks[i]
-       
-       }
-        function animationLoop() {
+		window.location.href= navlinks[i];
+		}
+	   
+	   
+       function highlightgear(i){
+	   }
+		function animationLoop() {
             // 1 - Clear the canvas
   
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -119,11 +123,13 @@
             // 2 Draw the gear canvas using variables for pos, angle, etc.
  
            drawGears(centerX, centerY, Angle);
+		   
+		   
 		   ctx.drawImage(document.getElementById("Icons"),0,0,canvas.width,canvas.height)   //Icons on top
           
           
           
-           // 3 Move the monster (change pos, angle, size, etc.)
+           // 3 Move the gears  (change pos, angle, size, etc.   -- with math)
           
           
           
