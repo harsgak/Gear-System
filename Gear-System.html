@@ -3,7 +3,7 @@
  
 <html>
  <head>
- <style>
+   <style>
      #gearsCanvas {
            position:fixed;
            right:0%; 
@@ -11,8 +11,8 @@
      }
 
 
- </style>
- <script>
+   </style>
+   <script>
         var canvas, ctx;
         var centerX=0, centerY=0, Angle=0.015 , dA=0;
         var rpm=3
@@ -116,9 +116,10 @@
   
             ctx.clearRect(0, 0, canvas.width, canvas.height);
           
-            // 2 Draw the monster using variables for pos, angle, etc.
+            // 2 Draw the gear canvas using variables for pos, angle, etc.
  
            drawGears(centerX, centerY, Angle);
+		   ctx.drawImage(document.getElementById("Icons"),0,0,canvas.width,canvas.height)   //Icons on top
           
           
           
@@ -162,7 +163,7 @@
      ctx.save();
      
      
-     // draw
+     // draw side gears
      putgear(519,295,0+dA)
      putgear(488,408,-1.832595714594046+dA)
      putgear(406,490,-3.665191429188092+dA)
@@ -200,20 +201,20 @@
          }
      }
 
- </script>
+   </script>
  
 
  </head>
 <body onload="init();">
      
  
-     <img id="Gearcentre" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUdEVkdThOSVRKeUU" alt="The centre gear[loading..]" height="0px">
-     <img id="Gearside" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUWXdpSm8xZzROUFE" alt="The side gear[loading..]" height="0px">
-     
-     <div id="NavGear">
-     <canvas id="gearsCanvas" width="601" height="607">
+	 <div id="NavGear" >
+	    <img id="Gearcentre" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDRTVVOWV5LVFNOWs" alt="The centre gear[loading..]" height="0px">
+        <img id="Gearside" src="https://drive.google.com/uc?export=download&id=0B8v1GVwmFNTDbHB1bjhka3hJR3M" alt="The side gear[loading..]" height="0px">
+        <img id="Icons" src="https://drive.google.com/uc?export=download&id=0B9FrkQRqB6LUQk5PZ01qM29zeXc" alt="Navicons[loading..]" height="0px">
+       <canvas id="gearsCanvas" width="601" height="607">
         Your browser does not support the canvas tag.
-     </canvas>
+       </canvas>
      </div>
     
       
