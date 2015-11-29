@@ -1,0 +1,40 @@
+body, #content, #bodyContent, #globalWrapper, #mainContainer, #contentContainer{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+        width: 100%;
+        background: #FFF4AA;
+	height: 90%;
+        
+        min-width: 400px;
+}
+#Navgear{
+       
+        cursor :pointer;
+        z-index:999;
+       -webkit-transition: 2s ease-in-out;
+       -moz-transition: 2s ease-in-out;
+       -o-transition: 2s ease-in-out;
+       transition: 2s ease-in-out;
+
+
+
+  
+
+    }
+   
+
+#NavGear:hover{
+      cursor:pointer;
+     -webkit-transform: translate(-200px,-200px);
+    -moz-transform: translate(-200px,-200px);
+    -o-transform: translate(-200px,-200px);
+    -ms-transform: translate(-200px,-200px);
+    transform: translate(-200px,-200px);
+
+        
+      
+    }
