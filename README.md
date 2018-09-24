@@ -4,3 +4,6 @@
 
 Gears styled circular navigation menu for website. And yes, the gears do move!
 
+## Demo
+Try it here:  
+http://harsgak.github.io/Gear-System/
